@@ -178,16 +178,28 @@ Interfases importantes
 
 ## \<Escenario de ejecución 1> {#__escenario_de_ejecuci_n_1}
 
--   *\<Inserte un diagrama de ejecución o la descripción del escenario>*
+ Descripción: Un estudiante abre la app e ingresa su correo institucional y contraseña. La app redirige a la API de autenticación (OAuth 2.0/SSO). Si es válido, el sistema devuelve un token y carga la vista principal.*
 
--   *\<Inserte la descripción de aspectos notables de las interacciones
-    entre los bloques de construcción mostrados en este diagrama.\>*
+-   App → API de autenticación (login)
+
+-   API → Moodle (verificación de usuario)
+
+-   API → App (token de acceso)
+
+-   App → Moodle API (consulta de cursos)
+
+
 
 ## \<Escenario de ejecución 2> {#__escenario_de_ejecuci_n_2}
 
-## ... {#_}
+Descripción: Un docente sube una nueva tarea. Moodle envía la actualización al sistema de notificaciones. Firebase entrega la alerta push al móvil del estudiante.
 
-## \<Escenario de ejecución n> {#__escenario_de_ejecuci_n_n}
+
+
+-  Moodle → Firebase (registro de evento)
+
+-  Firebase → App móvil (notificación push)
+
 
 # Vista de Despliegue {#section-deployment-view}
 
@@ -195,53 +207,104 @@ Interfases importantes
 
 ***\<Diagrama General>***
 
-Motivación
+Motivación: Garantizar un despliegue eficiente, seguro y escalable de la app, con acceso estable desde cualquier dispositivo móvil.
 
-:   *\<Explicación en forma textual>*
+calidad/Rendimiento:
 
-Características de Calidad/Rendimiento
+baja latencia.
 
-:   *\<Explicación en forma textual>*
+alta disponibilidad (≥ 99.5%).
 
-    Mapeo de los Bloques de Construcción a Infraestructura
+escalabilidad horizontal (carga creciente de usuarios).
 
-    :   *\<Descripción del mapeo>*
+mapeo:
+
+-  App móvil → Dispositivo del usuario (Android/iOS)
+
+-  API REST → Servidores UTB (Linux/Nginx)
+
+-  Moodle + Base de datos → Infraestructura UTB
+
+-  Notificaciones → Firebase Cloud Messaging
+
 
 ## Nivel de Infraestructura 2 {#_nivel_de_infraestructura_2}
 
 ### *\<Elemento de Infraestructura 1>* {#__emphasis_elemento_de_infraestructura_1_emphasis}
 
-*\<diagrama + explicación>*
+Dispositivos Móviles
+
+Ejecutan la app Flutter.
+
+Android 8.0+ / iOS 13+.
+
+Acceden mediante red pública o WiFi institucional.
 
 ### *\<Elemento de Infraestructura 2>* {#__emphasis_elemento_de_infraestructura_2_emphasis}
 
-*\<diagrama + explicación>*
+Servidores UTB
 
-...
+Almacenan Moodle, APIs, base de datos.
 
-### *\<Elemento de Infraestructura n>* {#__emphasis_elemento_de_infraestructura_n_emphasis}
-
-*\<diagrama + explicación>*
+Firewall institucional, protocolos seguros (HTTPS, TLS). 
 
 # Conceptos Transversales (Cross-cutting) {#section-concepts}
 
-## *\<Concepto 1>* {#__emphasis_concepto_1_emphasis}
+###  Seguridad
+Uso de OAuth 2.0 para autenticación.
 
-*\<explicación>*
+HTTPS en todas las comunicaciones.
 
-## *\<Concepto 2>* {#__emphasis_concepto_2_emphasis}
+No se almacenan datos sensibles en el dispositivo.
 
-*\<explicación>*
+###  Escalabilidad
+Arquitectura basada en microservicios para crecimiento modular.
 
-...
+Infraestructura con balanceo de carga.
 
-## *\<Concepto n>* {#__emphasis_concepto_n_emphasis}
+### Experiencia de usuario (UX)
+Interfaz intuitiva, con navegación simple.
 
-*\<explicación>*
+Notificaciones claras y útiles.
+
+Diseño adaptado a móviles.
+
+### Internacionalización
+Posibilidad de soporte multilenguaje (ES/EN).
+
+Recursos en archivos externos fácilmente modificables.
+
+
 
 # Decisiones de Diseño {#section-design-decisions}
 
 # Requerimientos de Calidad {#section-quality-scenarios}
+
+### Árbol de Calidad
+Seguridad
+
+Autenticación segura
+
+Protección de datos personales
+
+### Rendimiento
+
+Tiempo de respuesta < 2 segundos
+
+### Usabilidad
+
+Navegación intuitiva
+
+Interfaz accesible
+
+### Portabilidad
+
+Soporte en Android/iOS
+
+### Escalabilidad
+
+Infraestructura adaptable
+
 
 ## Árbol de Calidad {#__rbol_de_calidad}
 
