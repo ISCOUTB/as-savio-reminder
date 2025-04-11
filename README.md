@@ -36,8 +36,8 @@ REQ-4: El usuario podrá subir archivos cuando lo requiera para completar activi
 ## Metas de Calidad {#_metas_de_calidad}
 
 Para el proyecto se tienen en mente las siguientes metas
-->plataforma estable para android y ios
-->una app segura y rapida
+- plataforma estable para android y ios
+- una app segura y rapida
  
 ## Partes interesadas (Stakeholders) {#_partes_interesadas_stakeholders}
 

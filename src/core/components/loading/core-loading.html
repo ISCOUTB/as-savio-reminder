@@ -1,0 +1,11 @@
+@if (!hideUntil) {
+    <div class="core-loading-container" role="status" @coreShowHideAnimation>
+        <ion-spinner aria-hidden="true" />
+        @if (message) {
+            <p class="core-loading-message" role="status">{{message}}</p>
+        }
+    </div>
+}
+@if (loaded) {
+    <ng-content @coreShowHideAnimation />
+}
