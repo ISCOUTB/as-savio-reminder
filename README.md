@@ -51,7 +51,7 @@ El desarrollo de Savio Mobile debe cumplir con las siguientes restricciones:
 
 1. **Compatibilidad con Moodle**: La aplicación debe integrarse con la API de Moodle para garantizar el acceso a cursos, recursos y actividades.
 2. **Plataformas soportadas**: La aplicación debe ser compatible con Android (mínimo Android 8.0) y iOS (mínimo iOS 13).
-3. **Lenguajes y Frameworks**: Se debe desarrollar usando Flutter/Dart para facilitar el soporte multiplataforma.
+3. **Lenguajes y Frameworks**: Se debe desarrollar usando Angular/Javascript para facilitar el soporte multiplataforma.
 4. **Autenticación**: El login debe ser a través del correo institucional de la UTB, utilizando OAuth o SSO compatible con Moodle.
 5. **Almacenamiento de Datos**: Debe evitarse el almacenamiento de datos sensibles en el dispositivo; en su lugar, usar almacenamiento en la nube con cifrado.
 6. **Seguridad**:
