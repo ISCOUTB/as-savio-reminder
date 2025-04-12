@@ -86,13 +86,13 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 ## Contexto Técnico {#_contexto_t_cnico}
 
 | Componente            | Descripción                                      | Tecnología/Protocolo |
-|----------------------|------------------------------------------------|--------------------|
-| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Flutter/Dart      |
+|----------------------|------------------------------------------------|----------------------|
+| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Flutter/Dart         |
 | Servidor de Moodle  | LMS que gestiona cursos y usuarios              | PHP, MySQL, API REST |
-| Base de datos       | Almacena información de usuarios y cursos       | MySQL/PostgreSQL  |
-| API de autenticación | Maneja el login con correo institucional        | OAuth 2.0, SSO    |
-| Notificaciones push | Envía alertas sobre actividades académicas      | Firebase Cloud Messaging |
-| Servidor UTB        | Infraestructura para gestionar la app           | Linux, Nginx      |
+| Base de datos       | Almacena información de usuarios y cursos       | MySQL                |
+| API de autenticación | Maneja el login con correo institucional       | OAuth 2.0, SSO  |
+| Notificaciones push | Envía alertas sobre actividades académicas      | Moodle's Message API/Moodle's Push Notifications Server |
+| Servidor UTB        | Infraestructura para gestionar la app           | Linux, Nginx |
 
 
 # Estrategia de solución {#section-solution-strategy}
@@ -188,17 +188,13 @@ Interfases importantes
 
 -   App → Moodle API (consulta de cursos)
 
-
-
 ## \<Escenario de ejecución 2> {#__escenario_de_ejecuci_n_2}
 
-Descripción: Un docente sube una nueva tarea. Moodle envía la actualización al sistema de notificaciones. Firebase entrega la alerta push al móvil del estudiante.
+Descripción: Un docente sube una nueva tarea. Moodle envía la actualización al sistema de notificaciones. La API Moodle's Messages entrega la alerta push al móvil del estudiante.
 
+- MoodleServer →  registro del *message producer* en db/messages.php 
 
-
--  Moodle → Firebase (registro de evento)
-
--  Firebase → App móvil (notificación push)
+- MoodleServer →  App móvil, notificacion push
 
 
 # Vista de Despliegue {#section-deployment-view}
@@ -225,7 +221,7 @@ mapeo:
 
 -  Moodle + Base de datos → Infraestructura UTB
 
--  Notificaciones → Firebase Cloud Messaging
+-  Notificaciones →  Moodle's Message API
 
 
 ## Nivel de Infraestructura 2 {#_nivel_de_infraestructura_2}
@@ -234,40 +230,40 @@ mapeo:
 
 Dispositivos Móviles
 
-Ejecutan la app Flutter.
+- Ejecutan MoodleApp.
 
-Android 8.0+ / iOS 13+.
+- Android 8.0+ / iOS 13+.
 
-Acceden mediante red pública o WiFi institucional.
+- Acceden mediante red pública o WiFi institucional.
 
 ### *\<Elemento de Infraestructura 2>* {#__emphasis_elemento_de_infraestructura_2_emphasis}
 
 Servidores UTB
 
-Almacenan Moodle, APIs, base de datos.
+- Almacenan Moodle, APIs, base de datos.
 
-Firewall institucional, protocolos seguros (HTTPS, TLS). 
+- Firewall institucional, protocolos seguros (HTTPS, TLS). 
 
 # Conceptos Transversales (Cross-cutting) {#section-concepts}
 
 ###  Seguridad
-Uso de OAuth 2.0 para autenticación.
+- Uso de OAuth 2.0 para autenticación.
 
-HTTPS en todas las comunicaciones.
+- HTTPS en todas las comunicaciones.
 
-No se almacenan datos sensibles en el dispositivo.
+- No se almacenan datos sensibles en el dispositivo.
 
 ###  Escalabilidad
-Arquitectura basada en microservicios para crecimiento modular.
+- Arquitectura basada en microservicios para crecimiento modular.
 
-Infraestructura con balanceo de carga.
+- Infraestructura con balanceo de carga.
 
 ### Experiencia de usuario (UX)
-Interfaz intuitiva, con navegación simple.
+- Interfaz intuitiva, con navegación simple.
 
-Notificaciones claras y útiles.
+- Notificaciones claras y útiles.
 
-Diseño adaptado a móviles.
+- Diseño adaptado a móviles.
 
 ### Internacionalización
 Posibilidad de soporte multilenguaje (ES/EN).
@@ -281,11 +277,11 @@ Recursos en archivos externos fácilmente modificables.
 # Requerimientos de Calidad {#section-quality-scenarios}
 
 ### Árbol de Calidad
-Seguridad
+- Seguridad
 
-Autenticación segura
+- Autenticación segura
 
-Protección de datos personales
+- Protección de datos personales
 
 ### Rendimiento
 
@@ -293,17 +289,17 @@ Tiempo de respuesta < 2 segundos
 
 ### Usabilidad
 
-Navegación intuitiva
+- Navegación intuitiva
 
-Interfaz accesible
+- Interfaz accesible
 
 ### Portabilidad
 
-Soporte en Android/iOS
+- Soporte en Android/iOS
 
 ### Escalabilidad
 
-Infraestructura adaptable
+- Infraestructura adaptable
 
 
 ## Árbol de Calidad {#__rbol_de_calidad}
@@ -317,7 +313,7 @@ Infraestructura adaptable
 +-----------------------+-----------------------------------------------+
 | Término               | Definición                                    |
 +=======================+===============================================+
-| *\<Término-1>*        | *\<definicion-1>*                             |
+| *\<Servidor>*        | *\<definicion-1>*                             |
 +-----------------------+-----------------------------------------------+
-| *\<Término-2>*        | *\<definicion-2>*                             |
+| *\<Message API>*        | *\<definicion-2>*                             |
 +-----------------------+-----------------------------------------------+
