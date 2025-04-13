@@ -87,7 +87,7 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 
 | Componente            | Descripción                                      | Tecnología/Protocolo |
 |----------------------|------------------------------------------------|----------------------|
-| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Flutter/Dart         |
+| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Angular/Tonic        |
 | Servidor de Moodle  | LMS que gestiona cursos y usuarios              | PHP, MySQL, API REST |
 | Base de datos       | Almacena información de usuarios y cursos       | MySQL                |
 | API de autenticación | Maneja el login con correo institucional       | OAuth 2.0, SSO  |
@@ -97,82 +97,109 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 
 # Estrategia de solución {#section-solution-strategy}
 
+La solución se basa en la integración y extensión de la aplicación oficial Moodle App, desarrollada con Angular, JavaScript y Node.js. Esta aplicación móvil se comunicará con un backend ya existente sobre Moodle, alojado en un servidor Apache, utilizando PHP y MySQL.
+
+Se aprovechará la arquitectura modular de Moodle para extender funcionalidades mediante plugins personalizados, sin modificar el núcleo del sistema. El intercambio de datos entre la aplicación y Moodle se realizará a través de las APIs REST oficiales, garantizando compatibilidad y seguridad.
+
+La estrategia tecnológica incluye:
+- Frontend móvil: Moodle App (Angular), adaptada mediante desarrollo de plugins Ionic.
+- Backend: Moodle sobre servidor Apache, utilizando PHP 8.x y base de datos MySQL.
+- Comunicación: API REST de Moodle con autenticación basada en tokens.
+- Seguridad: Cifrado HTTPS, gestión de sesiones seguras y validación de roles.
+- Extensibilidad: Plugins personalizados que amplían las capacidades del sistema Moodle para las necesidades específicas de la UTB.
+
+El diseño busca garantizar compatibilidad con futuras versiones de Moodle, escalabilidad del servidor backend y una experiencia de usuario coherente dentro de la aplicación móvil.
+
+
 # Vista de Bloques {#section-building-block-view}
 
 ## Sistema General de Caja Blanca {#_sistema_general_de_caja_blanca}
 
-***\<Diagrama general>***
+***Diagrama general***
 
 Motivación
-
-:   *\<Explicación en texto>*
+:   Facilitar la comunicación entre estudiantes y docentes mediante la integración de la app Moodle con los servicios backend de la UTB.
 
 Bloques de construcción contenidos
 
-:   *\<Desripción de los bloques de construcción contenidos (Cajas
-    negras)>*
+:   Frontend móvil (Moodle App), Backend (servidor PHP en Apache), Base de datos (MySQL), API REST de Moodle.
 
 Interfases importantes
 
-:   *\<Descripción de las interfases importantes>*
+:   API REST entre frontend y backend, conexión PHP-MySQL, y comunicación Angular-API.
 
-### \<Caja Negra 1> {#__caja_negra_1}
+### Moodle App {#__caja_negra_1}
 
-*\<Propósito/Responsabilidad>*
+Aplicación móvil desarrollada en Angular, usada por los estudiantes y docentes para acceder a recursos educativos y notificaciones.
 
-*\<Interfase(s)>*
+**Interfases**: API REST de Moodle.
 
-*\<(Opcional) Características de Calidad/Performance>*
+**Calidad**: Multiplataforma, responsiva, segura.
 
-*\<(Opcional) Ubicación Archivo/Directorio>*
+**Ubicación**: Repositorio oficial de Moodle Mobile.
 
-*\<(Opcional) Requerimientos Satisfechos>*
+**Requerimientos satisfechos**: Acceso remoto, interacción con plugins, recepción de mensajes.
 
-*\<(Opcional) Riesgos/Problemas/Incidentes Abiertos>*
+### Backend PHP/Moodle {#__caja_negra_2}
 
-### \<Caja Negra 2> {#__caja_negra_2}
+Servidor que ejecuta el núcleo de Moodle y gestiona la lógica de negocio, incluyendo los plugins.
 
-*\<plantilla de caja negra>*
+**Interfases**: API REST, conexión a MySQL, entrada desde App.
 
-### \<Caja Negra N> {#__caja_negra_n}
+**Calidad**: Modular, extensible, segura.
 
-*\<Plantilla de caja negra>*
+**Ubicación**: Servidor Apache UTB.
 
-### \<Interfase 1> {#__interfase_1}
+**Requerimientos satisfechos**: Procesamiento de datos, autenticación, gestión de usuarios y contenido.
 
-...
+### Base de Datos MySQL {#__caja_negra_3}
 
-### \<Interfase m> {#__interfase_m}
+Almacena toda la información del sistema: usuarios, cursos, mensajes, configuración de plugins.
+
+**Interfases**: Conexión directa con PHP/Moodle.
+
+**Calidad**: Alta disponibilidad, respaldo periódico.
+
+**Ubicación**: Servidor de base de datos UTB.
+
+**Requerimientos satisfechos**: Persistencia y consulta eficiente de datos.
+
+#### API REST de Moodle {#__interfase_1}
+
+Protocolo de comunicación basado en HTTP usado para el intercambio de datos entre la App y el backend Moodle.
+
+#### Conexión PHP-MySQL {#__interfase_2}
+
+Interfase estándar que permite al backend consultar, insertar o actualizar información en la base de datos.
 
 ## Nivel 2 {#_nivel_2}
 
-### Caja Blanca *\<bloque de construcción 1>* {#_caja_blanca_emphasis_bloque_de_construcci_n_1_emphasis}
+#### Caja Blanca *Módulo de Autenticación* {#_caja_blanca_autenticacion}
 
-*\<plantilla de caja blanca>*
+Gestión de login y generación de tokens de acceso. Usa validación contra tabla de usuarios.
 
-### Caja Blanca *\<bloque de construcción 2>* {#_caja_blanca_emphasis_bloque_de_construcci_n_2_emphasis}
+#### Caja Blanca *Módulo de Mensajería* {#_caja_blanca_mensajeria}
 
-*\<plantilla de caja blanca>*
+Encargado del envío/recepción de mensajes desde y hacia la app usando Message API.
 
-...
+#### Caja Blanca *Módulo de Cursos* {#_caja_blanca_cursos}
 
-### Caja Blanca *\<bloque de construcción m>* {#_caja_blanca_emphasis_bloque_de_construcci_n_m_emphasis}
-
-*\<plantilla de caja blanca>*
+Maneja la creación, inscripción y acceso a cursos desde la base de datos.
 
 ## Nivel 3 {#_nivel_3}
 
-### Caja Blanca \<\_bloque de construcción x.1\_\> {#_caja_blanca_bloque_de_construcci_n_x_1}
+#### Caja Blanca *Login Controller* {#_caja_blanca_bloque_de_construccion_1_1}
 
-*\<plantilla de caja blanca>*
+Controlador en PHP que valida credenciales y retorna el token al frontend.
 
-### Caja Blanca \<\_bloque de construcción x.2\_\> {#_caja_blanca_bloque_de_construcci_n_x_2}
+#### Caja Blanca *Message API Handler* {#_caja_blanca_bloque_de_construccion_2_1}
 
-*\<plantilla de caja blanca>*
+Controlador que gestiona la lógica de envío y recepción de mensajes mediante la API de Moodle.
 
-### Caja Blanca \<\_bloque de construcción y.1\_\> {#_caja_blanca_bloque_de_construcci_n_y_1}
+#### Caja Blanca *DBQuery Cursos* {#_caja_blanca_bloque_de_construccion_3_1}
 
-*\<plantilla de caja blanca>*
+Funciones SQL que consultan información de cursos activos, inscritos y disponibles.
+
 
 # Vista de Ejecución {#section-runtime-view}
 
@@ -271,9 +298,6 @@ Posibilidad de soporte multilenguaje (ES/EN).
 Recursos en archivos externos fácilmente modificables.
 
 
-
-# Decisiones de Diseño {#section-design-decisions}
-
 # Requerimientos de Calidad {#section-quality-scenarios}
 
 ### Árbol de Calidad
@@ -301,19 +325,22 @@ Tiempo de respuesta < 2 segundos
 
 - Infraestructura adaptable
 
-
-## Árbol de Calidad {#__rbol_de_calidad}
-
 ## Escenarios de calidad {#_escenarios_de_calidad}
 
 # Riesgos y deuda técnica {#section-technical-risks}
 
+
+
 # Glosario {#section-glossary}
 
-+-----------------------+-----------------------------------------------+
-| Término               | Definición                                    |
-+=======================+===============================================+
-| *\<Servidor>*        | *\<definicion-1>*                             |
-+-----------------------+-----------------------------------------------+
-| *\<Message API>*        | *\<definicion-2>*                             |
-+-----------------------+-----------------------------------------------+
+| Término               | Definición                                                                                  |
+|-----------------------|---------------------------------------------------------------------------------------------|
+| *Servidor*            | Computadora o sistema que proporciona servicios a otros programas o dispositivos.          |
+| *Message API*         | Interfaz de programación utilizada por Moodle para gestionar el envío y recepción de mensajes. |
+| *Moodle App*          | Aplicación móvil oficial de Moodle, basada en Angular, que permite el acceso remoto.       |
+| *Plugin*              | Extensión modular de Moodle que permite añadir o modificar funcionalidades.                |
+| *REST API*            | Estilo de arquitectura para intercambio de datos mediante HTTP.                            |
+| *Token de acceso*     | Cadena generada por el servidor que permite a un cliente autenticarse de forma segura.     |
+| *Apache*              | Servidor HTTP de código abierto usado para alojar aplicaciones web.                        |
+| *MySQL*               | Sistema de gestión de bases de datos relacional usado por Moodle.                          |
+| *PHP*                 | Lenguaje de programación de lado servidor utilizado en el backend de Moodle.               |
