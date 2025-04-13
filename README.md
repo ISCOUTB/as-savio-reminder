@@ -327,9 +327,25 @@ Tiempo de respuesta < 2 segundos
 
 ## Escenarios de calidad {#_escenarios_de_calidad}
 
+### Escenario 1: Seguridad en el acceso
+Contexto: Un usuario intenta acceder a datos sin autorización.
+Estímulo: Petición HTTP con token inválido o manipulado.
+Respuesta esperada: El servidor rechaza la solicitud con código 401 y no expone información sensible.
+
+### Escenario 2: Mantenibilidad del código
+Estimulación: Se requiere actualizar el módulo de mensajería sin afectar el resto del sistema.
+Ambiente: Proyecto modular en Angular y Node.js, versionado con Git.
+Respuesta esperada: El cambio se implementa y despliega sin romper otras funcionalidades.
+Medida de calidad: Tiempo necesario para aplicar el cambio y número de pruebas rotas.
+
 # Riesgos y deuda técnica {#section-technical-risks}
 
+## Riesgos Técnicos
+Dependencia de múltiples tecnologías: Integrar Angular, Node.js, PHP y MySQL puede generar problemas de compatibilidad o mantenimiento. de igual forma las dependencias de paquetes de npm también podría general problemas algunos de estos llegan a deprecarse.
 
+## Deuda Técnica
+Falta de pruebas automatizadas: Algunas funcionalidades clave no tienen tests.
+Documentación técnica incompleta en la parte del backend PHP.
 
 # Glosario {#section-glossary}
 
