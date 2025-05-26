@@ -41,7 +41,8 @@
         "postinstall": "patch-package && cd cordova-plugin-moodleapp && npm install",
         "lang:update-langpacks": "./scripts/update_langpacks.sh",
         "lang:detect-langpacks": "./scripts/update_langpacks.sh detect",
-        "lang:create-langindex": "./scripts/create_langindex.sh"
+        "lang:create-langindex": "./scripts/create_langindex.sh",
+        "resources:android": "ionic cordova resources android"
     },
     "dependencies": {
         "@angular/animations": "^17.3.12",
@@ -71,6 +72,7 @@
         "@awesome-cordova-plugins/sqlite": "^6.9.0",
         "@awesome-cordova-plugins/status-bar": "^6.9.0",
         "@awesome-cordova-plugins/web-intent": "^6.9.0",
+        "@capacitor/android": "^7.2.0",
         "@ionic/angular": "^8.4.1",
         "@ionic/cordova-builders": "^11.0.0",
         "@moodlehq/cordova-plugin-advanced-http": "3.3.1-moodle.1",
