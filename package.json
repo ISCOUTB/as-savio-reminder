@@ -43,7 +43,7 @@
         "lang:update-langpacks": "./scripts/update_langpacks.sh",
         "lang:detect-langpacks": "./scripts/update_langpacks.sh detect",
         "lang:create-langindex": "./scripts/create_langindex.sh",
-        "resources:android": "ionic cordova resources android"
+        "resources": "ionic cordova resources android"
     },
     "dependencies": {
         "@angular/animations": "^17.3.12",
