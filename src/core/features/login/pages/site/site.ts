@@ -52,6 +52,7 @@ import { CorePromiseUtils } from '@singletons/promise-utils';
 import { CoreCountries } from '@singletons/countries';
 import { CoreAlerts } from '@services/overlays/alerts';
 import { CoreSharedModule } from '@/core/shared.module';
+import { SAVIO_URL } from '@/core/features/login/constants'
 
 /**
  * Site (url) chooser when adding a new site.
@@ -365,6 +366,19 @@ export default class CoreLoginSitePage implements OnInit {
             modal.dismiss();
         }
     }
+
+
+    /**
+     * Connect into Savio.
+     *
+     * @param e Event (if any).
+     * @returns Promise resolved when done.
+     */
+    async connect_savio(e?: Event): Promise<void> {
+        //let url = 'https://savio.utb.edu.co';
+        return this.connect(SAVIO_URL, e);
+    }
+
 
     /**
      * Authenticate in a demo site.

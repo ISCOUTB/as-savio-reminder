@@ -23,6 +23,7 @@ export const IDENTITY_PROVIDERS_FEATURE_NAME = 'NoDelegate_IdentityProviders';
 export const IDENTITY_PROVIDER_FEATURE_NAME_PREFIX = 'NoDelegate_IdentityProvider_';
 export const ALWAYS_SHOW_LOGIN_FORM = 'always_show_login_form';
 export const ALWAYS_SHOW_LOGIN_FORM_CHANGED = 'always_show_login_form_changed';
+export const SAVIO_URL = 'https://savio.utb.edu.co';
 
 // Event indicating that a user left the app because it wasn't supported by a site.
 export const APP_UNSUPPORTED_CHURN = 'app_unsupported_churn';

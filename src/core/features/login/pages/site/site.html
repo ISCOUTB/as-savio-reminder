@@ -5,8 +5,7 @@
         </ion-buttons>
 
         <ion-title>
-            <!--<h1>{{ 'core.login.connecttomoodle' | translate }}</h1>-->
-            <h1>Connect to SAVIO</h1>
+            <h1>{{ 'core.login.connecttomoodle' | translate }}</h1>
         </ion-title>
 
         <ion-buttons slot="end">
@@ -24,19 +23,18 @@
         </div>
 
         <ion-label>
-            <h1 class="ion-text-wrap">Para comenzar a utilizar SavioApp, primero debe autenticarse son su correo institucional.</h1>
+            <h1 class="ion-text-wrap">{{ 'core.login.startusingsavio' | translate }}</h1>
         </ion-label>
 
         <br/>
 
-        <!--TODO: use constants for url/texts-->
-        <ion-item button (click)="connect('https://savio.utb.edu.co/', $event)"
+        <ion-item button (click)="connect_savio($event)"
             [attr.aria-label]="'core.login.connect' | translate" [detail]="true" class="core-login-entered-site">
             <ion-thumbnail slot="start" aria-hidden="true">
                 <ion-icon name="fas-pen" aria-hidden="true" />
             </ion-thumbnail>
             <ion-label>
-                <h2>Pulse aquí para continuar.</h2>
+                <h2>{{ 'core.login.pressherecontinue' | translate }}</h2>
             </ion-label>
         </ion-item>
 
