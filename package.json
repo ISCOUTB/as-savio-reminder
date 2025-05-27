@@ -1,7 +1,7 @@
 {
-    "name": "moodlemobile",
+    "name": "saviomobile",
     "version": "5.0.0",
-    "description": "The official app for Moodle.",
+    "description": "The official app for Savio.",
     "author": {
         "name": "Moodle Pty Ltd.",
         "email": "mobile@moodle.com"
@@ -23,6 +23,7 @@
         "serve:test": "NODE_ENV=testing ionic serve --no-open",
         "build": "NODE_OPTIONS=--max-old-space-size=8192 ionic build --configuration=development",
         "build:prod": "NODE_ENV=production ionic build --prod",
+        "build:release": "NODE_ENV=production ionic cordova build android --prod --release",
         "build:test": "NODE_ENV=testing ionic build --configuration=testing",
         "dev:android": "concurrently \"npm run dev:android:app\" \"npm run dev:android:cordova\"",
         "dev:android:app": "ionic cordova run android --livereload --external --ssl",
