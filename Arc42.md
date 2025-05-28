@@ -1,6 +1,4 @@
-#
-
-**Acerca de arc42**
+# Acerca de arc42
 
 arc42, La plantilla de documentación para arquitectura de sistemas y de
 software.
@@ -18,7 +16,6 @@ Hruschka y Dr. Gernot Starke.
 El propósito de Savio Mobile es mejorar la accesibilidad y experiencia de los estudiantes, docentes y administradores, para ofrecer un mejor entorno en el cual los estudiantes y docentes puedan tener una mejor comunicación mediante el fácil acceso a cursos, material de estudio y actividades académicas. Esto traza como objetivo la digitalización y modernización de la plataforma, además que busca dar una experiencia intuitiva y eficiente.  y que la Savio mobile sea escalable y segura.
 
 Actualmente, Savio opera con Moodle pero su diseño web no está adaptado para dispositivos móviles, la implementación de Moodle App permitirá la mejora significativa de la navegación. La aplicación móvil servirá como una extensión de Savio, asegurando la compatibilidad de las funcionalidades esenciales. y garantizar un manejo de datos adecuado y compatibilidad de módulos existentes.
-
 
 
 ## Vista de Requerimientos
@@ -91,12 +88,10 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 | Notificaciones push | Envía alertas sobre actividades académicas      | Moodle's Message API/Moodle's Push Notifications Server |
 
 
-
 # Estrategia de solución
 
-La solución se basa en la integración y extensión de la aplicación oficial Moodle App, desarrollada con Angular, JavaScript y Node.js ( framework Ionic ).
-
-Se aprovechará la arquitectura modular de Moodle para extender funcionalidades mediante plugins personalizados, sin modificar el núcleo del sistema. El intercambio de datos entre la aplicación y Moodle se realizará a través de las APIs REST oficiales, garantizando compatibilidad y seguridad.
+La solución se basa en la integración y extensión de la aplicación oficial Moodle App, desarrollada con Angular, JavaScript y Node.js (framework Ionic).
+Se aprovechará el código de MoodleApp y se modificarán algunas partes visuales sin afectar directamente las funcionalidades del núcleo del sistema.
 
 La estrategia tecnológica incluye:
 - Frontend móvil: Una modificación de Moodle App (Angular/Ionic).
@@ -105,23 +100,15 @@ La estrategia tecnológica incluye:
 
 El diseño busca garantizar compatibilidad con futuras versiones de Moodle, escalabilidad del servidor backend y una experiencia de usuario coherente dentro de la aplicación móvil.
 
-
 # Vista de Bloques
 
 ## Sistema General de Caja Blanca
 
-***Diagrama general***
+**Diagrama general**
 
-Motivación
-:   Facilitar la comunicación entre estudiantes y docentes mediante la integración de la app Moodle con los servicios backend de la UTB.
+Motivación: Facilitar la comunicación entre estudiantes y docentes mediante la integración de la app Moodle con los servicios backend de la UTB.
 
-Bloques de construcción contenidos
-
-:   Frontend móvil (Moodle App), Backend (servidor PHP en Apache), Base de datos (MySQL), API REST de Moodle.
-
-Interfases importantes
-
-:   API REST entre frontend y backend, conexión PHP-MySQL, y comunicación Angular-API.
+Bloques de construcción contenidos: Frontend móvil (Moodle App), Backend (servidor Savio de la Universidad), Base de datos.
 
 ### Moodle App
 
@@ -183,32 +170,22 @@ Descripción: Un docente sube una nueva tarea. Moodle envía la actualización a
 
 - MoodleServer →  App móvil, notificacion push
 
-
 # Vista de Despliegue
 ## Nivel de infraestructura 1
 
-***\<Diagrama General>***
+**Diagrama General**
 
 Motivación: Garantizar un despliegue eficiente, seguro y escalable de la app, con acceso estable desde cualquier dispositivo móvil.
 
-calidad/Rendimiento:
+Calidad/Rendimiento: baja latencia. alta disponibilidad (≥ 99.5%). escalabilidad horizontal (carga creciente de usuarios).
 
-baja latencia.
+Mapeo:
 
-alta disponibilidad (≥ 99.5%).
+-  App móvil →  Dispositivo del usuario (Android/iOS)
 
-escalabilidad horizontal (carga creciente de usuarios).
-
-mapeo:
-
--  App móvil → Dispositivo del usuario (Android/iOS)
-
--  API REST → Servidores UTB (Linux/Nginx)
-
--  Moodle + Base de datos → Infraestructura UTB
+-  Moodle + Base de datos →  Infraestructura UTB
 
 -  Notificaciones →  Moodle's Message API
-
 
 ## Nivel de Infraestructura 2
 
@@ -292,8 +269,8 @@ Estímulo: Petición HTTP con token inválido o manipulado.
 Respuesta esperada: El servidor rechaza la solicitud con código 401 y no expone información sensible.
 
 ### Escenario 2: Mantenibilidad del código
-Estimulación: Se requiere actualizar el módulo de mensajería sin afectar el resto del sistema.
-Ambiente: Proyecto modular en Angular y Node.js, versionado con Git.
+Estimulación: Se requiere actualizar la página de login sin afectar el resto del sistema.
+Ambiente: Proyecto modular en Angular y Node.js, framework Ionic, versionado con Git.
 Respuesta esperada: El cambio se implementa y despliega sin romper otras funcionalidades.
 Medida de calidad: Tiempo necesario para aplicar el cambio y número de pruebas rotas.
 
@@ -317,4 +294,4 @@ Documentación técnica incompleta en la parte del backend PHP.
 | *Token de acceso*     | Cadena generada por el servidor que permite a un cliente autenticarse de forma segura.     |
 | *Apache*              | Servidor HTTP de código abierto usado para alojar aplicaciones web.                        |
 | *MySQL*               | Sistema de gestión de bases de datos relacional usado por Moodle.                          |
-| *PHP*                 | Lenguaje de programación de lado servidor utilizado en el backend de Moodle.               |
+| *PHP*                 | Lenguaje de programación de lado servidor utilizado en el backend de Moodle.
