@@ -23,14 +23,13 @@ Actualmente, Savio opera con Moodle pero su diseño web no está adaptado para d
 
 ## Vista de Requerimientos
 
-Nuestros requerimientos serían
-REQ-1: La aplicación debe permitir la autenticación con el correo institucional de la UTB.
+- La aplicación debe permitir la autenticación con el correo institucional de la UTB.
 
-REQ-2: Se debe poder acceder a los cursos e interactuar con los recursos que estos tengan. TBD.
+- Se debe poder acceder a los cursos e interactuar con los recursos que estos tengan.
 
-REQ-3: La aplicación podrá enviar notificaciones sobre las actividades pendientes con información descriptiva. TBD.
+- La aplicación podrá enviar notificaciones sobre las actividades pendientes con información descriptiva.
 
-REQ-4: El usuario podrá subir archivos cuando lo requiera para completar actividades. TBD
+- El usuario podrá subir archivos cuando lo requiera para completar actividades.
 
 
 ## Metas de Calidad
@@ -86,7 +85,7 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 | Componente            | Descripción                                      | Tecnología/Protocolo |
 |----------------------|------------------------------------------------|----------------------|
 | Aplicación móvil    | Cliente principal para estudiantes y docentes   | Ionic/cordova       |
-| Servidor de Savio  | LMS que gestiona cursos y usuarios               | PHP, Apache |
+| Servidor de Savio  | LMS que gestiona cursos y usuarios               | PHP, Apache, Moodle |
 | Base de datos       | Almacena información de usuarios y cursos       | MySQL                |
 | API de autenticación | Maneja el login con correo institucional       | OAuth 2.0, SSO  |
 | Notificaciones push | Envía alertas sobre actividades académicas      | Moodle's Message API/Moodle's Push Notifications Server |
@@ -100,7 +99,7 @@ La solución se basa en la integración y extensión de la aplicación oficial M
 Se aprovechará la arquitectura modular de Moodle para extender funcionalidades mediante plugins personalizados, sin modificar el núcleo del sistema. El intercambio de datos entre la aplicación y Moodle se realizará a través de las APIs REST oficiales, garantizando compatibilidad y seguridad.
 
 La estrategia tecnológica incluye:
-- Frontend móvil: Moodle App (Angular), adaptada mediante desarrollo de plugins Ionic.
+- Frontend móvil: Una modificación de Moodle App (Angular/Ionic).
 - Seguridad: Cifrado HTTPS, gestión de sesiones seguras y validación de roles.
 - Extensibilidad: Plugins personalizados que amplían las capacidades del sistema Moodle para las necesidades específicas de la UTB.
 
