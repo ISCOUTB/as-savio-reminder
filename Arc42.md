@@ -53,9 +53,8 @@ El desarrollo de Savio Mobile debe cumplir con las siguientes restricciones:
 3. **Lenguajes y Frameworks**: Se debe desarrollar usando Ionic/cordova para facilitar el soporte multiplataforma.
 4. **Autenticación**: El login debe ser a través del correo institucional de la UTB, utilizando OAuth o SSO compatible con Moodle.
 5. **Almacenamiento de Datos**: Debe evitarse el almacenamiento de datos sensibles en el dispositivo; en su lugar, usar almacenamiento en la nube con cifrado.
-6. **Seguridad**:
-7. **Desempeño**: La aplicación debe mantener tiempos de respuesta menores a 2 segundos en consultas estándar.
-8. **Normativas y Políticas**: Cumplir con las políticas de seguridad y privacidad de datos de la UTB y las tiendas de aplicaciones (Google Play y App Store).
+6. **Desempeño**: La aplicación debe mantener tiempos de respuesta menores a 2 segundos en consultas estándar.
+7. **Normativas y Políticas**: Cumplir con las políticas de seguridad y privacidad de datos de la UTB y las tiendas de aplicaciones (Google Play y App Store).
 
 # Alcance y Contexto del Sistema
 
@@ -86,24 +85,22 @@ La aplicación servirá como una extensión de la plataforma web, facilitando la
 
 | Componente            | Descripción                                      | Tecnología/Protocolo |
 |----------------------|------------------------------------------------|----------------------|
-| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Angular/Tonic        |
-| Servidor de Moodle  | LMS que gestiona cursos y usuarios              | PHP, MySQL, API REST |
+| Aplicación móvil    | Cliente principal para estudiantes y docentes   | Ionic/cordova       |
+| Servidor de Savio  | LMS que gestiona cursos y usuarios               | PHP, Apache |
 | Base de datos       | Almacena información de usuarios y cursos       | MySQL                |
 | API de autenticación | Maneja el login con correo institucional       | OAuth 2.0, SSO  |
 | Notificaciones push | Envía alertas sobre actividades académicas      | Moodle's Message API/Moodle's Push Notifications Server |
-| Servidor UTB        | Infraestructura para gestionar la app           | Linux, Nginx |
+
 
 
 # Estrategia de solución
 
-La solución se basa en la integración y extensión de la aplicación oficial Moodle App, desarrollada con Angular, JavaScript y Node.js. Esta aplicación móvil se comunicará con un backend ya existente sobre Moodle, alojado en un servidor Apache, utilizando PHP y MySQL.
+La solución se basa en la integración y extensión de la aplicación oficial Moodle App, desarrollada con Angular, JavaScript y Node.js ( framework Ionic ).
 
 Se aprovechará la arquitectura modular de Moodle para extender funcionalidades mediante plugins personalizados, sin modificar el núcleo del sistema. El intercambio de datos entre la aplicación y Moodle se realizará a través de las APIs REST oficiales, garantizando compatibilidad y seguridad.
 
 La estrategia tecnológica incluye:
 - Frontend móvil: Moodle App (Angular), adaptada mediante desarrollo de plugins Ionic.
-- Backend: Moodle sobre servidor Apache, utilizando PHP 8.x y base de datos MySQL.
-- Comunicación: API REST de Moodle con autenticación basada en tokens.
 - Seguridad: Cifrado HTTPS, gestión de sesiones seguras y validación de roles.
 - Extensibilidad: Plugins personalizados que amplían las capacidades del sistema Moodle para las necesidades específicas de la UTB.
 
@@ -131,45 +128,11 @@ Interfases importantes
 
 Aplicación móvil desarrollada en Angular, usada por los estudiantes y docentes para acceder a recursos educativos y notificaciones.
 
-**Interfases**: API REST de Moodle.
-
 **Calidad**: Multiplataforma, responsiva, segura.
 
-**Ubicación**: Repositorio oficial de Moodle Mobile.
+**Ubicación**: Repositorio de github de la universidad.
 
 **Requerimientos satisfechos**: Acceso remoto, interacción con plugins, recepción de mensajes.
-
-### Backend PHP/Moodle
-
-Servidor que ejecuta el núcleo de Moodle y gestiona la lógica de negocio, incluyendo los plugins.
-
-**Interfases**: API REST, conexión a MySQL, entrada desde App.
-
-**Calidad**: Modular, extensible, segura.
-
-**Ubicación**: Servidor Apache UTB.
-
-**Requerimientos satisfechos**: Procesamiento de datos, autenticación, gestión de usuarios y contenido.
-
-### Base de Datos MySQL
-
-Almacena toda la información del sistema: usuarios, cursos, mensajes, configuración de plugins.
-
-**Interfases**: Conexión directa con PHP/Moodle.
-
-**Calidad**: Alta disponibilidad, respaldo periódico.
-
-**Ubicación**: Servidor de base de datos UTB.
-
-**Requerimientos satisfechos**: Persistencia y consulta eficiente de datos.
-
-#### API REST de Moodle
-
-Protocolo de comunicación basado en HTTP usado para el intercambio de datos entre la App y el backend Moodle.
-
-#### Conexión PHP-MySQL
-
-Interfase estándar que permite al backend consultar, insertar o actualizar información en la base de datos.
 
 ## Nivel 2
 
@@ -201,7 +164,7 @@ Funciones SQL que consultan información de cursos activos, inscritos y disponib
 
 # Vista de Ejecución
 
-## \<Escenario de ejecución 1>
+## Escenario de ejecución 1
 
  Descripción: Un estudiante abre la app e ingresa su correo institucional y contraseña. La app redirige a la API de autenticación (OAuth 2.0/SSO). Si es válido, el sistema devuelve un token y carga la vista principal.*
 
@@ -213,7 +176,7 @@ Funciones SQL que consultan información de cursos activos, inscritos y disponib
 
 -   App → Moodle API (consulta de cursos)
 
-## \<Escenario de ejecución 2>
+## Escenario de ejecución 2
 
 Descripción: Un docente sube una nueva tarea. Moodle envía la actualización al sistema de notificaciones. La API Moodle's Messages entrega la alerta push al móvil del estudiante.
 
@@ -250,7 +213,7 @@ mapeo:
 
 ## Nivel de Infraestructura 2
 
-### *\<Elemento de Infraestructura 1>*
+### *Elemento de Infraestructura 1*
 
 Dispositivos Móviles
 
@@ -260,7 +223,7 @@ Dispositivos Móviles
 
 - Acceden mediante red pública o WiFi institucional.
 
-### *\<Elemento de Infraestructura 2>*
+### *Elemento de Infraestructura 2*
 
 Servidores UTB
 

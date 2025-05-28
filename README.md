@@ -4,7 +4,7 @@
 
 SavioApp es una aplicación móvil que busca mejorar la accesibilidad y experiencia de los estudiantes al interactuar con la plataforma de aprendizaje Savio.
 La aplicación es un fork de [moodleapp](https://moodledev.io/general/app), utiliza [Angular](https://angular.dev/) y el framework [Ionic](https://ionicframework.com/)(ionic cordova) para funcionar.
-En [este documento]() se encuentra la información más detallada sobre el proyecto.
+En [este documento](https://github.com/ISCOUTB/as-savio-reminder/blob/master/Arc42.md) se encuentra la información más detallada sobre el proyecto.
 
 ## Ejecutando el Proyecto
 
