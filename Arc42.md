@@ -282,6 +282,35 @@ Dependencia de múltiples tecnologías: Integrar Angular, Node.js, PHP y MySQL p
 Falta de pruebas automatizadas: Algunas funcionalidades clave no tienen tests.
 Documentación técnica incompleta en la parte del backend PHP.
 
+# Evalucación de Arquitectura
+
+- **Propósito**: Evaluar la arquitectura de SavioApp para identificar compromisos y riesgos asociados con los atributos de calidad.
+- **Alcance**: La evaluación se centra en SavioApp como herramienta que ayuda a hacer más cómodo el uso de Savio.
+
+## Interesados:
+  - Desarrolladores: Una arquitectura que sea fácil de mantener, modificar y escalar.
+  - Estudiantes: Buscan una experiencia de aprendizaje fluida y accesible.
+  - Educadores: Necesitan herramientas para gestionar contenido y evaluar el progreso de los estudiantes.
+
+## Preocupaciones:
+- Desarrolladores: Modificabilidad, rendimiento.
+- Para los Usuarios Finales: Usabilidad, rendimiento, accesibilidad.
+- Administradores: Seguridad, integridad de datos.
+- Educadores: Funcionalidad, que tenga facilidad de uso.
+
+## Análisis de Compromisos
+- Uso de Ionic/Cordova
+    * Compromisos: Rendimiento vs. facilidad de desarrollo.
+    * Impacto: La facilidad de desarrollo podría llevar a un rendimiento subóptimo en dispositivos de gama baja.
+
+- Mantenibilidad
+    * Compromisos: debe tener una forma clara de mantener el código, sobretodo al obtener nuevas actualizaciones de MoodleApp.
+    * Impacto: Puede ser dificil integrar cambios al código fuente cuando se realice una actualización de la aplicación.
+
+#### 8. Hallazgos y Recomendaciones
+- Resumen de Hallazgos: La arquitectura es buena para el desarrollo multiplataforma (Android, IOS), pero se deben realizar las debidas pruebas en diferentes dispositivos móviles.
+- Recomendaciones: Implementar una forma de realizar parches a la aplicación para evitar conflictos al actualizar versiones de MoodleApp.
+
 # Glosario
 
 | Término               | Definición                                                                                  |
